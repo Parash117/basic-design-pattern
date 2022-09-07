@@ -1,0 +1,36 @@
+spring:
+  cache:
+    type: redis
+  redis:
+    host: localhost
+    port: 6379
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bdp_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+    hikari:
+      minimum-idle: 5
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      idle-timeout: 600
+      max-lifetime: 1800
+      leak-detection-threshold: 60000
+  servlet:
+    multipart:
+      max-file-size: 200MB
+      file-size-threshold: 200KB
+      max-request-size: 200MB
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+      jdbc:
+        lob:
+          non_contextual_creation: true
