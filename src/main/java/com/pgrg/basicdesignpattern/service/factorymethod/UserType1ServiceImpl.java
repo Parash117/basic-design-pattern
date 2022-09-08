@@ -4,7 +4,6 @@ import com.pgrg.basicdesignpattern.model.factorymethod.ApprovalDto;
 import com.pgrg.basicdesignpattern.model.factorymethod.UserType1Entity;
 import com.pgrg.basicdesignpattern.repo.factorymethod.UserType1Repo;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.usertype.UserType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +24,9 @@ public class UserType1ServiceImpl implements UserType1Service {
 
     @Override
     public void verify(ApprovalDto approvalDto) {
+        UserType1Entity userType1Entity = userType1Repo.findById(approvalDto.getId()).orElseThrow(()-> new RuntimeException("ERROR OOPS"));
+        userType1Entity.setApprovalStatus("VERIFY");
+        userType1Entity = userType1Repo.save(userType1Entity);
         log.info("VERIFIED USER Type 1");
 
     }

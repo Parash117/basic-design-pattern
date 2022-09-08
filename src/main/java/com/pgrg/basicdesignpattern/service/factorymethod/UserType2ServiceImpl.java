@@ -23,6 +23,9 @@ public class UserType2ServiceImpl implements UserType2Service{
 
     @Override
     public void verify(ApprovalDto approvalDto) {
+        UserType2Entity userType2Entity = userType2Repo.findById(approvalDto.getId()).orElseThrow(()-> new RuntimeException("ERROR OOPS"));
+        userType2Entity.setApprovalStatus("VERIFY");
+        userType2Entity = userType2Repo.save(userType2Entity);
         log.info("VERIFIED USER Type2");
 
     }

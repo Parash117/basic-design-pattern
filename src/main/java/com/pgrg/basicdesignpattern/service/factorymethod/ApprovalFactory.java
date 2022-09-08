@@ -17,7 +17,7 @@ public class ApprovalFactory implements ApprovalFactoryAbstract {
             return userType1Service;
         }
         else if(userType.equalsIgnoreCase("userType2")) {
-            return userType1Service;
+            return userType2Service;
         }
         return null;
     }
